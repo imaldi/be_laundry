@@ -75,10 +75,6 @@ class AuthStatus extends _$AuthStatus {
       });
       if (successCallback != null) successCallback();
     } on TypeError {
-      // state = const AsyncValue.loading();
-      // state = await AsyncValue.guard(() async {
-      //   return null;
-      // });
       state = AsyncValue.error(TypeError, StackTrace.current);
       if (failureCallback != null) failureCallback();
     }
@@ -136,10 +132,6 @@ class AuthStatus extends _$AuthStatus {
       //   throw TypeError();
       // }
     } on TypeError {
-      // // state = const AsyncValue.loading();
-      // // state = await AsyncValue.guard(() async {
-      // //   return null;
-      // // });
       state = AsyncValue.error(TypeError, StackTrace.current);
       if (failureCallback != null) failureCallback("Type Error");
     } catch (e) {
@@ -147,6 +139,47 @@ class AuthStatus extends _$AuthStatus {
     }
   }
 
+  Future<void> userInfo({
+    required String email,
+    required String password,
+    Function? successCallback,
+    Function? failureCallback,
+  }) async {
+    const AsyncValue.loading();
 
+    Map<String, String> bodyParameters = {};
+    bodyParameters['type'] = 'username';
+    if (email.isNotEmpty) {
+      bodyParameters['email'] = email;
+    }
+    if (password.isNotEmpty) {
+      bodyParameters['password'] = password;
+    }
+
+    var url = Uri.https(
+      baseUrl,
+      userUrl,
+    );
+
+    // final json = await http.get(url);
+    final response = await http.get(url,
+        headers: {
+          'Accept': 'application/json',
+        },);
+    print("URL user info: $url");
+    log("result JSON: ${jsonDecode(response.body)}");
+    // log("result JSON: ${DashboardResponse.fromJson(jsonDecode(response.body)).toJson().toString()}");
+    try {
+      final result = AuthResponse.fromJson(jsonDecode(response.body));
+
+      state = await AsyncValue.guard(() async {
+        return result;
+      });
+      if (successCallback != null) successCallback();
+    } on TypeError {
+      state = AsyncValue.error(TypeError, StackTrace.current);
+      if (failureCallback != null) failureCallback();
+    }
+  }
 
 }
