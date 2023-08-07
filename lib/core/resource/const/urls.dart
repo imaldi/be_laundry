@@ -3,7 +3,7 @@ const baseUrl = "belaundry-api.sebaris.link";
 const platformUrl = "/platform";
 const userUrl = "$platformUrl/userUrl";
 const signUpUrl = "$userUrl/sign-up";
-const singInUrl = "$userUrl/sign-in";
+const signInUrl = "$userUrl/sign-in";
 const userInfo = "$userUrl/info";
 
 /// Products URLs

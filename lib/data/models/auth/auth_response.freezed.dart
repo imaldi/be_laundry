@@ -20,8 +20,11 @@ AuthResponse _$AuthResponseFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AuthResponse {
+  @HiveField(0)
   bool? get status => throw _privateConstructorUsedError;
+  @HiveField(1)
   String? get message => throw _privateConstructorUsedError;
+  @HiveField(2)
   String? get token => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -36,7 +39,10 @@ abstract class $AuthResponseCopyWith<$Res> {
           AuthResponse value, $Res Function(AuthResponse) then) =
       _$AuthResponseCopyWithImpl<$Res, AuthResponse>;
   @useResult
-  $Res call({bool? status, String? message, String? token});
+  $Res call(
+      {@HiveField(0) bool? status,
+      @HiveField(1) String? message,
+      @HiveField(2) String? token});
 }
 
 /// @nodoc
@@ -81,7 +87,10 @@ abstract class _$$_AuthResponseCopyWith<$Res>
       __$$_AuthResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool? status, String? message, String? token});
+  $Res call(
+      {@HiveField(0) bool? status,
+      @HiveField(1) String? message,
+      @HiveField(2) String? token});
 }
 
 /// @nodoc
@@ -118,17 +127,24 @@ class __$$_AuthResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
+@HiveType(typeId: authResponseTypeId, adapterName: 'AuthResponseAdapter')
 class _$_AuthResponse implements _AuthResponse {
-  const _$_AuthResponse({this.status, this.message, this.token});
+  const _$_AuthResponse(
+      {@HiveField(0) this.status,
+      @HiveField(1) this.message,
+      @HiveField(2) this.token});
 
   factory _$_AuthResponse.fromJson(Map<String, dynamic> json) =>
       _$$_AuthResponseFromJson(json);
 
   @override
+  @HiveField(0)
   final bool? status;
   @override
+  @HiveField(1)
   final String? message;
   @override
+  @HiveField(2)
   final String? token;
 
   @override
@@ -166,18 +182,21 @@ class _$_AuthResponse implements _AuthResponse {
 
 abstract class _AuthResponse implements AuthResponse {
   const factory _AuthResponse(
-      {final bool? status,
-      final String? message,
-      final String? token}) = _$_AuthResponse;
+      {@HiveField(0) final bool? status,
+      @HiveField(1) final String? message,
+      @HiveField(2) final String? token}) = _$_AuthResponse;
 
   factory _AuthResponse.fromJson(Map<String, dynamic> json) =
       _$_AuthResponse.fromJson;
 
   @override
+  @HiveField(0)
   bool? get status;
   @override
+  @HiveField(1)
   String? get message;
   @override
+  @HiveField(2)
   String? get token;
   @override
   @JsonKey(ignore: true)
